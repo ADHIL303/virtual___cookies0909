@@ -2,7 +2,7 @@ from flask import Flask, render_template, request,redirect
 import smtplib
 
 
-app=Flask(__name__,template_folder='Templates',static_folder='static')
+app=Flask(__name__,template_folder='templates',static_folder='static')
 
 
 @app.route('/')
