@@ -1,9 +1,20 @@
 from flask import Flask, render_template, request,redirect
 import smtplib
+import threading
+import requests
 
 
 app=Flask(__name__,template_folder='templates',static_folder='static')
+def auto_request():
+    print("Sending auto request...")
+    requests.get("https://npvj6gfx-5500.inc1.devtunnels.ms/")
+    
+    # Repeat every 10 seconds
+    threading.Timer(10, auto_request).start()
 
+@app.before_first_request
+def start_auto_request():
+    auto_request()
 
 @app.route('/')
 def index():
