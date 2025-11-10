@@ -1,18 +1,26 @@
 from flask import Flask, render_template
-import threading, requests
+import threading
+import time
+import requests
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
+# ------------------------------
+# Auto-request function using while loop
+# ------------------------------
 def auto_request():
-    print("Sending auto request...")
-    try:
-        requests.get("https://npvj6gfx-5500.inc1.devtunnels.ms/")
-    except Exception as e:
-        print(f"Auto request failed: {e}")
-    
-    # Repeat every 10 seconds
-    threading.Timer(10, auto_request).start()
+    url = "https://virtual-cookies0909.onrender.com"  # your own Render URL
+    while True:
+        try:
+            print("Sending auto request to self...")
+            requests.get(url, timeout=10)
+        except Exception as e:
+            print(f"Auto request failed: {e}")
+        time.sleep(300)  # 5 minutes
 
+# ------------------------------
+# Flask routes
+# ------------------------------
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -33,9 +41,9 @@ def services():
 def team():
     return render_template('team.html')
 
+# ------------------------------
+# Start auto-request in a background thread
+# ------------------------------
 if __name__ == "__main__":
-    # Start the auto request loop before Flask starts
     threading.Thread(target=auto_request, daemon=True).start()
-
-    # Now start Flask
-    app.run(debug=True, port=5050)
+    app.run(host="0.0.0.0", port=10000)
