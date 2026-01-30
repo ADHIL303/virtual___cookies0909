@@ -52,22 +52,25 @@
                     <!--====  Primary Menu  ===-->
                     <div class="primary-menu">
                         <!--====  Site Branding  ===-->
-                        <div class="site-branding">
-                            <a href="index.html" class="brand-logo"><img src="{{url_for('static',filename='assets/images/digital-agency/logo/logo-main.png')}}" alt="Brand Logo"></a>
-                        </div>
+                        <div class="site-branding bg-transparent shadow-none border-0 p-0 m-0 opacity-100">
+    <a href="index.html" class="brand d-inline-block">
+        <img src="{{ url_for('static', filename='assets/images/logo/logo.png') }}"
+             alt="Brand Logo"
+             class="img-fluid p-0 m-0 opacity-100">
+    </a>
+</div>
+
                         <!--=== Sasly Main Menu===-->
                         <div class="pf-nav-menu">
-                            <!--====  Site Branding  ===-->
-                            <div class="site-branding d-block d-lg-none text-center">
-                                <a href="index.html" class="brand-logo"><img src="{{url_for('static',filename='assets/images/creative-agency/logo/logo-main.png')}}" alt="Brand Logo"></a>
-                            </div>
+            
+                    
                             <!--=== Main Menu ===-->
                         <nav class="main-menu">
                             <ul>
                                 <li><a href="{{ url_for('index') }}">Home</a></li>
                                 <li><a href="{{ url_for('services') }}">Services</a></li>
                                 <li><a href="{{ url_for('team') }}">Team</a></li>
-                                <li><a href="{{ url_for('project') }}">Projects</a></li>
+                                <li><a href="{{ url_for('projects') }}">Projects</a></li>
                                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
                             </ul>
                         </nav>
@@ -136,11 +139,9 @@
                                     <!--=== Footer Widget ===-->
                                     <div class="footer-widget footer-about-widget mb-40 pf_fadeup">
                                         <div class="footer-content">
-                                            <div class="footer-logo">
-                                                <a href="index.html"><img src="{{url_for('static',filename='assets/images/digital-agency/logo/logo-main.png')}}" alt="Brand Logo"></a>
-                                            </div>
+                                            
                                             <p>Agenko creative digital agency delivering innovate web Development marketing.</p>
-                                            <form>
+                                            <form method="post" action="{{ url_for('contact') }}">
                                                 <div class="form-group">
                                                     <input type="email" class="form_control" placeholder="Email Address" name="email" required>
                                                     <label><i class="far fa-envelope"></i></label>
@@ -155,12 +156,9 @@
                                     <div class="footer-widget footer-contact-info-widget mb-40 pf_fadeup">
                                         <div class="footer-content mb-25">
                                             <h4 class="widget-title">Main Address</h4>
-                                            <p>6801 Hollywood Blvd, Los Angeles, CA 90028</p>
+                                            <p>opposite yatheem khan,tirurnadi kodathale ipoo thalkaalam</p>
                                         </div>
-                                        <div class="footer-content mb-25">
-                                            <h4 class="widget-title">Sub-Address</h4>
-                                            <p>200 Santa Monica Pier, Santa Monica, CA 90401</p>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-5 col-md-12">
@@ -201,7 +199,7 @@
                                                         </div>
                                                         <div class="content">
                                                             <h6>Email</h6>
-                                                            <p><a href="mailto:info@agenko.com">info@agenko.com</a></p>
+                                                            <p><a href="mailto:info@agenko.com">vitualcookiein@gmail.com</a></p>
                                                         </div>
                                                     </div>
                                                     <div class="agenko-iconic-box style-three">
@@ -210,7 +208,7 @@
                                                         </div>
                                                         <div class="content">
                                                             <h6>Phone</h6>
-                                                            <p><a href="tel:+555-7659-9854">+555-7659-9854</a></p>
+                                                            <p><a href="06235305505">+91 8792422492</a></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -228,16 +226,14 @@
                                 <div class="col-md-6">
                                     <!--=== Copyright Text ===-->
                                     <div class="copyright-text">
-                                        <p>&copy; 2025 <span>Agenko</span> - All Rights Reserved.</p>
+                                        <p>&copy; 2025 <span>Virtual Cookies</span> - All Rights Reserved.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <!--=== Copyright Nav ===-->
                                     <div class="copyright-nav">
                                         <ul>
-                                            <li><a href="#">Terms & Condition</a></li>
-                                            <li><a href="#">Privacy Policy</a></li>
-                                            <li><a href="#">Contact</a></li>
+                                            <li><a href="{{ url_for('contact') }}">Contact</a></li>
                                         </ul>
                                     </div>
                                 </div>
