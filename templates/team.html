@@ -6,7 +6,14 @@
 {% block title %}Contact{% endblock %}
 
 {% block head %}
-  
+  <style>
+    .member-image img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  </style>
 {% endblock %}
 
                 {% block body %}
@@ -27,66 +34,23 @@
                                 </div>
                             </div>
                             <div class="row">
+                                {% for member in team_members %}
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <!--=== Agenko Team Item ===-->
                                     <div class="agenko-team-item style-four mb-35 pf_fadeup">
                                         <div class="member-image">
-                                            <img src="{{url_for('static',filename='assets/images/pages/team/adhil.png')}}" alt="Member Image">
+                                            <img src="{{url_for('static',filename=member.image)}}" alt="{{ member.name }}">
                                             <div class="hover-content">
                                                 
                                             </div>
                                         </div>
                                         <div class="member-info text-center">
-                                            <h4 class="title">Mr Anzil</h4>
-                                            <span class="position">Designer</span>
+                                            <h4 class="title">{{ member.name }}</h4>
+                                            <span class="position">{{ member.position }}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-sm-12">
-                                    <!--=== Agenko Team Item ===-->
-                                    <div class="agenko-team-item style-four mb-35 pf_fadeup">
-                                        <div class="member-image">
-                                            <img src="{{url_for('static',filename='assets/images/pages/team/adhil.png')}}" alt="Member Image">
-                                            <div class="hover-content">
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="member-info text-center">
-                                            <h4 class="title">Mr Rinshaf</h4>
-                                            <span class="position">Marketer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-12">
-                                    <!--=== Agenko Team Item ===-->
-                                    <div class="agenko-team-item style-four mb-35 pf_fadeup">
-                                        <div class="member-image">
-                                            <img src="{{url_for('static',filename='assets/images/pages/team/adhil.png')}}" alt="Member Image">
-                                            <div class="hover-content">
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="member-info text-center">
-                                            <h4 class="title">Mr Adhil</h4>
-                                            <span class="position">Developer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-12">
-                                    <!--=== Agenko Team Item ===-->
-                                    <div class="agenko-team-item style-four mb-35 pf_fadeup">
-                                        <div class="member-image">
-                                            <img src="{{url_for('static',filename='assets/images/pages/team/adhil.png')}}" alt="Member Image">
-                                            <div class="hover-content">
-                                              
-                                            </div>
-                                        </div>
-                                        <div class="member-info text-center mb-35">
-                                            <h4 class="title">Mr Swalih</h4>
-                                            <span class="position">Developer</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
 
                         </div>
                     </section><!--====== End Agenko Team Section  ======-->

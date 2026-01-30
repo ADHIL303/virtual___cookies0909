@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Virtual Cookies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/plugins/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .admin-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background-color: #764ba2;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .item-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+        .item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        .item-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .item-details h5 {
+            margin: 0;
+            color: #333;
+        }
+        .item-details p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        input[type="file"] {
+            padding: 8px;
+        }
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>🍪 Admin Panel - Virtual Cookies</h1>
+            <p>Manage Team Members and Services</p>
+        </div>
+
+        <div class="form-row">
+            <!-- ADD TEAM MEMBER FORM -->
+            <div class="admin-section">
+                <div class="section-title">➕ Add Team Member</div>
+                <form method="POST" action="{{ url_for('add_team_member') }}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="team-name"><strong>Name</strong></label>
+                        <input type="text" id="team-name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="team-position"><strong>Position</strong></label>
+                        <input type="text" id="team-position" name="position" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="team-image"><strong>Photo</strong></label>
+                        <input type="file" id="team-image" name="image" class="form-control" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn-primary">Add Member</button>
+                </form>
+            </div>
+
+            <!-- ADD SERVICE FORM -->
+            <div class="admin-section">
+                <div class="section-title">➕ Add Service</div>
+                <form method="POST" action="{{ url_for('add_service') }}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="service-title"><strong>Title</strong></label>
+                        <input type="text" id="service-title" name="title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-subtitle"><strong>Subtitle</strong></label>
+                        <input type="text" id="service-subtitle" name="subtitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-description"><strong>Description</strong></label>
+                        <textarea id="service-description" name="description" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-image"><strong>Photo</strong></label>
+                        <input type="file" id="service-image" name="image" class="form-control" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn-primary">Add Service</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- TEAM MEMBERS LIST -->
+        <div class="admin-section">
+            <div class="section-title">👥 Team Members ({{ team_members|length }})</div>
+            {% if team_members %}
+                {% for member in team_members %}
+                    <div class="item-card">
+                        <div class="item-info">
+                            <div style="display: flex; align-items: center; flex: 1;">
+                                <img src="{{ url_for('static', filename=member.image) }}" alt="{{ member.name }}" class="item-image">
+                                <div class="item-details">
+                                    <h5>{{ member.name }}</h5>
+                                    <p>{{ member.position }}</p>
+                                </div>
+                            </div>
+                            <a href="{{ url_for('delete_team_member', id=member.id) }}" class="btn-danger" onclick="return confirm('Delete this member?')">Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: #999; text-align: center;">No team members added yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- SERVICES LIST -->
+        <div class="admin-section">
+            <div class="section-title">🎯 Services ({{ services|length }})</div>
+            {% if services %}
+                {% for service in services %}
+                    <div class="item-card">
+                        <div class="item-info">
+                            <div style="display: flex; align-items: center; flex: 1;">
+                                <img src="{{ url_for('static', filename=service.image) }}" alt="{{ service.title }}" class="item-image">
+                                <div class="item-details">
+                                    <h5>{{ service.title }}</h5>
+                                    <p><strong>{{ service.subtitle }}</strong></p>
+                                    <p>{{ service.description[:60] }}...</p>
+                                </div>
+                            </div>
+                            <a href="{{ url_for('delete_service', id=service.id) }}" class="btn-danger" onclick="return confirm('Delete this service?')">Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: #999; text-align: center;">No services added yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- PROJECTS LIST -->
+        <div class="admin-section">
+            <div class="section-title">📁 Projects ({{ projects|length }})</div>
+            <div style="margin-bottom: 20px;">
+                <form method="POST" action="{{ url_for('add_project') }}" enctype="multipart/form-data" style="background: #f8f9fa; padding: 20px; border-radius: 5px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <label><strong>Project Title</strong></label>
+                            <input type="text" name="title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Client</strong></label>
+                            <input type="text" name="client" class="form-control" required>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <label><strong>Category</strong></label>
+                            <input type="text" name="category" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Description</strong></label>
+                            <textarea name="description" class="form-control" required></textarea>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <label><strong>Start Date</strong></label>
+                            <input type="text" name="start_date" class="form-control" placeholder="DD-MM-YYYY" required>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>End Date</strong></label>
+                            <input type="text" name="end_date" class="form-control" placeholder="DD-MM-YYYY" required>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <label><strong>Photo</strong></label>
+                            <input type="file" name="image" class="form-control" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Project Link</strong></label>
+                            <input type="url" name="project_link" class="form-control" placeholder="https://example.com">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Project</button>
+                </form>
+            </div>
+
+            {% if projects %}
+                {% for project in projects %}
+                    <div class="item-card">
+                        <div class="item-info">
+                            <div style="display: flex; align-items: center; flex: 1;">
+                                <img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }}" class="item-image">
+                                <div class="item-details">
+                                    <h5>{{ project.title }}</h5>
+                                    <p><strong>Client:</strong> {{ project.client }} | <strong>Category:</strong> {{ project.category }}</p>
+                                    <p><strong>Dates:</strong> {{ project.start_date }} to {{ project.end_date }}</p>
+                                    <p>{{ project.description[:80] }}...</p>
+                                    {% if project.project_link %}<p><strong>Link:</strong> <a href="{{ project.project_link }}" target="_blank" style="color: #667eea;">{{ project.project_link }}</a></p>{% endif %}
+                                </div>
+                            </div>
+                            <a href="{{ url_for('delete_project', id=project.id) }}" class="btn-danger" onclick="return confirm('Delete this project?')">Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: #999; text-align: center;">No projects added yet.</p>
+            {% endif %}
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+            <a href="{{ url_for('index') }}" class="back-link">← Back to Website</a>
+        </div>
+    </div>
+</body>
+</html>

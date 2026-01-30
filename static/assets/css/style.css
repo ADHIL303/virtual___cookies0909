@@ -191,8 +191,52 @@ main {
 ::-webkit-scrollbar-thumb {
   background-color: #13172b;
 }
+/* ===== Preloader Wrapper ===== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primary-black-color, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
 
-/* Preloader CSS */
+/* ===== Loader Container ===== */
+.loading-container {
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Loader Image ===== */
+#loading-icon img {
+  width: 220px;     /* 🔥 IMAGE SIZE CONTROL */
+  height: auto;
+}
+
+/* ===== Rotation Animation ===== */
+.rotate360 {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  #loading-icon img {
+    width: 150px;
+  }
+}
+/* Preloader CSS 
 .preloader {
   bottom: 0;
   height: 100vh;
@@ -216,11 +260,13 @@ main {
 
 .loading-container,
 .loading {
-  height: 100px;
+  height: 250px;
+  width: 250px;
   position: relative;
-  width: 100px;
-  border-radius: 100%;
+  border-radius: 50%;
 }
+  
+
 
 .loading-container {
   margin: 40px auto;
@@ -270,7 +316,7 @@ main {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
-}
+}*/
 /*  Back To Top */
 .scrollTop {
   position: absolute;

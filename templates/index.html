@@ -44,51 +44,21 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <ul class="service-list pf_fadeup">
-                                            <li>
-                                                <!--=== Iconic Box ===-->
-                                                <a href="{{ url_for('contact') }}" class="agenko-iconic-box style-one">
-                                                    <div class="icon">
-                                                        <i class="flaticon-cloud-computing"> </i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <h4 class="title">Website Design Service</h4>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                           {% for service in services %}
                                             <li>
                                                 <!--=== Iconic Box ===-->
                                                 <a href="{{ url_for('services') }}" class="agenko-iconic-box style-one">
-                                                    <div class="icon">
-                                                        <i class="flaticon-web-development"><img src="{{url_for('static',filename='assets/images/logo_index_circle/download.jpg')}}" alt=""></i>
+                                                    <div class="icdon">
+                                                   
                                                     </div>
                                                     <div class="content">
-                                                        <h4 class="title">Web Development Service</h4>
+                                                        <h4 class="title">{{ service.title }}</h4>
                                                     </div>
                                                 </a>
                                             </li>
                                             <li>
-                                                <!--=== Iconic Box ===-->
-                                                <a href="{{ url_for('services') }}" class="agenko-iconic-box style-one">
-                                                    <div class="icon">
-                                                        <i class="flaticon-idea"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <h4 class="title">Brand Strategy Solutions</h4>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <!--=== Iconic Box ===-->
-                                                <a href="{{ url_for('services') }}" class="agenko-iconic-box style-one">
-                                                    <div class="icon">
-                                                        <i class="flaticon-announcement"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <h4 class="title">Digital Marketing Solution</h4>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
+                                                {% endfor %}
+                                               
                                     </div>
                                     <div class="col-lg-8">
                                         <!--=== Hero Image Box ===-->
@@ -179,6 +149,46 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <!--=== Card Item ===-->
+                                    <div class="agenko-card-item style-one mb-30 pf_fadeup">
+                                        <div class="card-title">
+                                            <div class="sn-number">04</div>
+                                            <h3 class="title">SEO & Analytics</h3>
+                                        </div>
+                                        <div class="content">
+                                            <p>Improve visibility and growth with <span>SEO strategies</span> and analytics insights that drive qualified traffic and measurable results.</p>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="{{ url_for('services') }}" class="theme-btn style-one">
+                                                <span class="text-flip">
+                                                    <span class="text">LEARN MORE</span>
+                                                    <span class="text">LEARN MORE</span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <!--=== Card Item ===-->
+                                    <div class="agenko-card-item style-one mb-30 pf_fadeup">
+                                        <div class="card-title">
+                                            <div class="sn-number">05</div>
+                                            <h3 class="title">Support & Maintenance</h3>
+                                        </div>
+                                        <div class="content">
+                                            <p>Reliable <span>support and maintenance</span> plans to keep your digital products secure, updated, and performing at their best.</p>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="{{ url_for('services') }}" class="theme-btn style-one">
+                                                <span class="text-flip">
+                                                    <span class="text">LEARN MORE</span>
+                                                    <span class="text">LEARN MORE</span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section><!--======  End Services Section  ======-->
@@ -206,78 +216,29 @@
                                 </div>
                             </div>
                             <div class="row">
+                            {% for p in projects %}
                                 <div class="col-lg-6">
                                     <!--=== Project Item ===-->
                                     <div class="agenko-project-item style-one mb-45 pf_fadeup">
                                         <div class="thumbnail">
-                                            <img src="{{url_for('static',filename='assets/images/digital-agency/project/project1.jpg')}}" alt="Project Image">
+                                            <img src="{{url_for('static',filename=p.image)}}" alt="{{ p.title }}">
                                             <div class="project-button">
                                                 <a href="{{ url_for('projects') }}"><i class="far fa-plus"></i></a>
                                             </div>
                                         </div>
                                         <div class="content">
                                             <div class="project-categories">
-                                                <a href="#">Mobile App</a>
-                                                <a href="#">UI/UX Design</a>
+                                                <a href="{{ url_for('projects') }}">{{ p.title }}</a>
+                                                <a href="{{ url_for('projects') }}">{{p.category}}</a>
                                             </div>
-                                            <h4 class="title"><a href="{{ url_for('projects') }}">Medical Mobile Design & Development</a></h4>
+                                            <h4 class="title"><a href="{{ url_for('projects') }}">{{ p.description}}</a></h4>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <!--=== Project Item ===-->
-                                    <div class="agenko-project-item style-one mb-45 pf_fadeup">
-                                        <div class="thumbnail">
-                                            <img src="{{url_for('static',filename='assets/images/digital-agency/project/project2.jpg')}}" alt="Project Image">
-                                            <div class="project-button">
-                                                <a href="{{ url_for('projects') }}"><i class="far fa-plus"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <div class="project-categories">
-                                                <a href="#">Mobile App</a>
-                                                <a href="#">UI/UX Design</a>
-                                            </div>
-                                            <h4 class="title"><a href="{{ url_for('projects') }}">Stacks Website Design & Coding</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <!--=== Project Item ===-->
-                                    <div class="agenko-project-item style-one mb-45 pf_fadeup">
-                                        <div class="thumbnail">
-                                            <img src="{{url_for('static',filename='assets/images/digital-agency/project/project3.jpg')}}" alt="Project Image">
-                                            <div class="project-button">
-                                                <a href="{{ url_for('projects') }}"><i class="far fa-plus"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <div class="project-categories">
-                                                <a href="#">Mobile App</a>
-                                                <a href="#">UI/UX Design</a>
-                                            </div>
-                                            <h4 class="title"><a href="{{ url_for('projects') }}">Financial & Wallet Website Design</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <!--=== Project Item ===-->
-                                    <div class="agenko-project-item style-one mb-45 pf_fadeup">
-                                        <div class="thumbnail">
-                                            <img src="{{url_for('static',filename='assets/images/digital-agency/project/project4.jpg')}}" alt="Project Image">
-                                            <div class="project-button">
-                                                <a href="{{ url_for('projects') }}"><i class="far fa-plus"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <div class="project-categories">
-                                                <a href="#">Mobile App</a>
-                                                <a href="#">UI/UX Design</a>
-                                            </div>
-                                            <h4 class="title"><a href="{{ url_for('projects') }}">Sales Management Mobile App Design</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
+                            {% endfor %}
+                                
+                           
+                       
                             </div>
                         </div>
                     </section><!--======  End Project Section  ======-->
@@ -345,89 +306,27 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            {% for t in team %}
+                             <div class="row">
+                                
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <!--=== Team Item  ===-->
                                     <div class="agenko-team-item style-two mb-40 pf_fadeup">
                                         <div class="member-image">
-                                            <img src="{{url_for('static',filename='assets/images/digital-agency/team/team1.jpg')}}" alt="Team image">
+                                            <img src="{{url_for('static',filename=t.image)}}" alt="{{ t.name }}">
                                             <div class="hover-content">
-                                                <ul class="social-link">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                                </ul>
+                                            
                                             </div>
                                         </div>
                                         <div class="member-info">
-                                            <h4 class="title">Mr. David Liam</h4>
-                                            <p class="position">CEO & Founder</p>
+                                            <h4 class="title">{{ t.name }}</h4>
+                                            <p class="position">{{ t.position }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-sm-12">
-                                    <!--=== Team Item  ===-->
-                                    <div class="agenko-team-item style-two mb-40 pf_fadeup">
-                                        <div class="member-image">
-                                            <img src="{{url_for('static',filename='assets/images/digital-agency/team/team2.jpg')}}" alt="Team image">
-                                            <div class="hover-content">
-                                                <ul class="social-link">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="member-info">
-                                            <h4 class="title">Miss Alex Mika</h4>
-                                            <p class="position">CTA</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-12">
-                                    <!--=== Team Item  ===-->
-                                    <div class="agenko-team-item style-two mb-40 pf_fadeup">
-                                        <div class="member-image">
-                                            <img src="{{url_for('static',filename='assets/images/digital-agency/team/team3.jpg')}}" alt="Team image">
-                                            <div class="hover-content">
-                                                <ul class="social-link">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="member-info">
-                                            <h4 class="title">Mr. John Smith</h4>
-                                            <p class="position">Developer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-12">
-                                    <!--=== Team Item  ===-->
-                                    <div class="agenko-team-item style-two mb-40 pf_fadeup">
-                                        <div class="member-image">
-                                            <img src="{{url_for('static',filename='assets/images/digital-agency/team/team4.jpg')}}" alt="Team image">
-                                            <div class="hover-content">
-                                                <ul class="social-link">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="member-info">
-                                            <h4 class="title">Jessika Joya</h4>
-                                            <p class="position">Marketer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                
                         </div>
+                        {% endfor %}
                     </section><!--======  End Team Section  ======-->
                     {% block scripts %}
                     {% endblock %}
